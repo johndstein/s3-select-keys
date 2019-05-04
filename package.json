@@ -1,6 +1,7 @@
 {
   "name": "s3-select-keys",
-  "version": "0.0.0",
+  "keywords": ["S3", "AWS", "search", "query", "SQL"],
+  "version": "0.0.1",
   "description": "Search a list of keys (files) with S3 Select SQL queries.",
   "main": "index.js",
   "scripts": {
