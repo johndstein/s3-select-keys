@@ -12,32 +12,32 @@ When I am done I emit `done`. Then you can get the list of results files.
 
 ## Quick Start
 
-The code is well commented. Here's the TLDR;
+The code is well commented. TLDR;
 
 ```js
 const S3SelectKeys = require('s3-select-keys')
 const keys = ['some/file/here', 'another/file/here']
 const options = {
-	Bucket: 'some-bucket',
-	Expression: "select * from s3object o where o.name='harry'",
-	ExpressionType: 'SQL',
-	InputSerialization: {
-		JSON: {
-			Type: 'LINES'
-		},
-		CompressionType: 'GZIP'
-	},
-	OutputSerialization: {
-		JSON: {
-			RecordDelimiter: '\n'
-		}
-	}
+   Bucket: 'some-bucket',
+   Expression: "select * from s3object o where o.name='harry'",
+   ExpressionType: 'SQL',
+   InputSerialization: {
+      JSON: {
+         Type: 'LINES'
+      },
+      CompressionType: 'GZIP'
+   },
+   OutputSerialization: {
+      JSON: {
+         RecordDelimiter: '\n'
+      }
+   }
 }
 const s3s = new S3SelectKeys(keys, options)
 s3s
-	.on('done', (files) => {
-		console.error('Results are here.', files)
-	})
+   .on('done', (files) => {
+      console.error('Results are here.', files)
+   })
 s3s.start()
 ```
 
