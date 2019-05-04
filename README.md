@@ -5,7 +5,8 @@ bucket.
 
 https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-glacier-select-sql-reference.html
 
-For each file that matches the query I write a file out to the os temp folder.
+For each file that has matching results I write the results out to a
+file in the OS specific temporary folder.
 
 When I am done I emit `done`. Then you can get the list of results files.
 
