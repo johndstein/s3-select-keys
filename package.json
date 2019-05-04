@@ -1,0 +1,14 @@
+{
+  "name": "s3-select-keys",
+  "version": "0.0.0",
+  "description": "Search a list of keys (files) with S3 Select",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "John Stein",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.449.0"
+  }
+}
