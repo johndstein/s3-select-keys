@@ -5,14 +5,14 @@ bucket.
 
 https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-glacier-select-sql-reference.html
 
-For each file that has matching results I write the results out to a
-file in the OS specific temporary folder.
+For each key (file) that has matching results I write the results out
+to a file on the local file system.
 
 When I am done I emit `done`. Then you can get the list of results files.
 
 ## Quick Start
 
-The code is very well commented, but here's the TLDR;
+The code is well commented. Here's the TLDR;
 
 ```js
 const S3SelectKeys = require('s3-select-keys')
@@ -41,6 +41,11 @@ s3s
 s3s.start()
 ```
 
+## test/smoketest.js
+
+See `test/smoketest.js` for a working example of how to get the
+results and merge them all into a single stream.
+
 ## AWS Credentials
 
 The easy way to authenticate to AWS is to create the following two files.
@@ -66,18 +71,18 @@ aws_session_token = AgoJb3JpZ2luX2VjEN7//////////wEaCXVzLXdlc3QtMiJGMEQCIEV69Cg7
 ```
 
 [default]
-region = us-west-7
+region = us-west-2
 
 [billy]
-region = us-west-2
+region = us-east-1
 ```
 
 The Node.js AWS API will use the `[default]` credentials unless you
-specify otherwise. Here's how you would tell it to use a different
-profile.
+specify otherwise. Here's how to tell it to use a profile other than
+the default.
 
 ```js
 const AWS = require('aws-sdk');
 // If you want to use credentials other than the default profile, do this.
-AWS.config.credentials = new AWS.SharedIniFileCredentials({profile: 'billy'});
+AWS.config.credentials = new AWS.SharedIniFileCredentials({ profile: 'billy' });
 ```

@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 'use strict'
 
 const fs = require('fs')
@@ -13,7 +11,7 @@ const AWS = require('aws-sdk')
 // For each key that matches we write the results to a file under
 // os.tmpdir().
 
-// We emit 'done' when we are done.
+// We emit 'done' when we're done.
 
 // this.files contains a list of the full path to each of the results
 // files. We don't write a file for keys that did't match.
@@ -142,11 +140,12 @@ class S3SelectKeys extends require('events') {
 		}
 		const interval = setInterval(() => {
 			if (this.goodKeys.length + this.badKeys.length === this.keys.length) {
-				// console.error('ALL DONE')
 				clearInterval(interval)
 				this.endTime = new Date()
 				this.elapsedSeconds = (this.endTime - this.startTime) / 1000
-				this.emit('done')
+				// sort is essental if you care about results ordering
+				this.files.sort()
+				this.emit('done', this.files)
 			}
 		}, 100)
 	}
@@ -158,33 +157,3 @@ class S3SelectKeys extends require('events') {
 }
 
 exports = module.exports = S3SelectKeys
-
-if (require.main === module) {
-	const fs = require('fs')
-	const bucket = process.env.S3_SELECT_BUCKET
-	const keys = fs.readFileSync('keys').toString().split('\n')
-	// keys.splice(30)
-	const hostname = '10.160.2.12'
-	const options = {
-		Bucket: bucket,
-		Expression: `select * from s3object s where s.rawmsghostname='${hostname}'`,
-		ExpressionType: 'SQL',
-		InputSerialization: {
-			JSON: {
-				Type: 'LINES'
-			},
-			CompressionType: 'GZIP'
-		},
-		OutputSerialization: {
-			JSON: {
-				RecordDelimiter: '\n'
-			}
-		}
-	}
-	s3s = new S3SelectKeys(keys, options)
-	s3s
-		.on('done', (files) => {
-			console.error('DONE!!!', s3s, s3s.rmrf())
-		})
-	s3s.start()
-}
