@@ -10,6 +10,9 @@ to a file on the local file system.
 
 When I am done I emit `done`. Then you can get the list of results files.
 
+See https://github.com/johndstein/s3-select-stream if you want the results 
+returned in a single node stream.
+
 ## Quick Start
 
 The code is well commented. TLDR;
