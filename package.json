@@ -1,11 +1,11 @@
 {
   "name": "s3-select-keys",
   "keywords": ["S3", "AWS", "search", "query", "SQL"],
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Search a list of keys (files) with S3 Select SQL queries.",
   "repository": {
     "type": "git",
-    "url": "git@github.com/johndstein/s3-select-keys"
+    "url": "git+https://github.com/johndstein/s3-select-keys.git"
   },
   "main": "index.js",
   "scripts": {
