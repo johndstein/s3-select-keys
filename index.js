@@ -29,6 +29,9 @@ const AWS = require('aws-sdk')
 
 // It's hard if you care about order of results.
 
+// CORRECTION: Turns out it's easy with event-stream.
+// See See https://github.com/johndstein/s3-select-stream
+
 // If you have limited disk space, this may not be the thing for you.
 // AWS Lambda currently allows 512 MB storage in /tmp.
 class S3SelectKeys extends require('events') {
