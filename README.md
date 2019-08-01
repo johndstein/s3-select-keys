@@ -1,7 +1,7 @@
 # S3 Select Keys
 
 I run an S3 Select query against a list of keys (files) in a single S3
-bucket.
+bucket (https://github.com/johndstein/s3-select-stream is more better). 
 
 https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-glacier-select-sql-reference.html
 
